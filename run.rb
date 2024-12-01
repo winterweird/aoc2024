@@ -16,6 +16,10 @@ days = ARGV
 if days.empty?
   days = `ls .`.split(/\s+/).select { _1.match?(/\d+/) }
 end
+days, invalid_days = days.partition { _1.match?(/\d+/) && File.directory?(_1.rjust(2, "0")) }
+if !invalid_days.empty?
+  puts "Skipping invalid arguments: #{ invalid_days.join(", ") }"
+end
 days = days.map { _1.rjust(2, "0") }
 
 days.each do |day|
@@ -25,7 +29,8 @@ days.each do |day|
   puts header(day)
 
   if !executable?(part1) && !executable?(part2)
-    puts "\nSkipping Day #{day.to_i}"
+    puts "\nSkipping Day #{day.to_i} --- Not Implemented"
+    puts
     next
   end
 
