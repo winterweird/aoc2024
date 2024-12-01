@@ -2,6 +2,10 @@
 
 This repo contains my AoC solutions for 2024. I'm not aiming for quality here; rather, I'm aiming for a quick and dirty solution to each problem. Usually this will mean hacking together something experimentally using [the rb command](https://github.com/thisredone/rb).
 
+Brought to you by the philosophy outlined in [this talk](https://www.youtube.com/watch?v=sCZJblyT_XM):
+
+> Half-assed is OK when you only need half of an ass
+
 ## How to run
 
 Assuming you'd want to run the examples for whatever reason, the `run.rb` script is included for your convenience.
