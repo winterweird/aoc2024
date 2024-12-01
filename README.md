@@ -4,13 +4,23 @@ This repo contains my AoC solutions for 2024. I'm not aiming for quality here; r
 
 ## How to run
 
-Assuming you'd want to run the examples for whatever reason, the `run.rb` script is included for your convenience. To run all examples:
+Assuming you'd want to run the examples for whatever reason, the `run.rb` script is included for your convenience.
+
+### Prerequisites
+
+To run the examples as currently written, the following must be installed on your system and added to your path:
+
+-   Ruby (tested with Ruby 3.2.2)
+-   Bash
+-   [rb](https://github.com/thisredone/rb)
+
+### Running all examples
 
 ```
 $ ./run.rb
 ```
 
-To run a specific set of examples:
+### Running a specific set of examples
 
 ```
 $ ./run.rb 2 3 5 7 11
