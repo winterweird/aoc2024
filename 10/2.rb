@@ -4,7 +4,7 @@ def neighbors(m,i,j)
   end
 end
 
-def bfs(m,i,j)
+def dfs(m,i,j)
   visited = Array.new(m.length) { Array.new(m[0].length) {false} }
   stack = [[i,j]]
   while !stack.empty?
@@ -23,7 +23,7 @@ puts input.map(&:to_s)
 
 input.each_with_index do |l,i|
   l.each_with_index do |c,j|
-    bfs(input, i,j) if c == 0
+    dfs(input, i,j) if c == 0
   end
 end
 
