@@ -14,7 +14,7 @@ def getorient(dy,dx)
   end
 end
 def dijk(m, rp, ep)
-  s = Containers::MinHeap.new([[0, *rp, "E"]])
+  s = Containers::MinHeap.new([[0, *rp, "E", [rp]]])
   y,x = rp
   knownscore = Array.new(m.length) { Array.new(m[0].length) { Float::INFINITY } }
   knownscore[y][x] = 0
@@ -22,15 +22,21 @@ def dijk(m, rp, ep)
   visited = Array.new(m.length) { Array.new(m[0].length) { {"N" => false, "W" => false, "E" => false, "S" => false} } }
 
   camefrom = Array.new(m.length) { Array.new(m[0].length) { nil } }
+  seats = Set.new
+  best_path = Float::INFINITY
 
   while !s.empty?
-    cost, y,x, orient = s.pop
+    cost, y,x, orient, path = s.pop
 
     STDERR.puts "VISITED #{[y,x]} AT COST #{cost}#{[y,x]==ep ? ' AND TERMINATED': ''}"
-    next if visited[y][x][orient]
     visited[y][x][orient] = true
+    if cost > best_path
+      return seats.length+1
+    end
     if [y,x] == ep
-      return cost
+      best_path = cost
+      seats |= path
+      next
     end
     knownscore[y][x] = cost
 
@@ -41,7 +47,7 @@ def dijk(m, rp, ep)
       neworient = getorient(dy,dx)
       next if {"E" => "W", "W" => "E", "N" => "S", "S" => "N"}[neworient] == orient
       g = knownscore[y][x] + 1 + (neworient != orient ? 1000 : 0)
-      s << [g, ny, nx, neworient] if !visited[ny][nx][orient]
+      s << [g, ny, nx, neworient, path+[[y,x]]] if !visited[ny][nx][orient]
     end
   end
 
@@ -65,7 +71,7 @@ def dijk(m, rp, ep)
   #             end
   #end
   #STDERR.puts m2.map(&:join)
-  return knownscore[y][x]
+  return seats.length+1
 
 end
 
