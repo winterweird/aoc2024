@@ -14,6 +14,7 @@ def h(p, e)
 end
 
 def astar(m, s, e)
+  # NOTE: not actually astar, but whatever
   tovisit = Containers::MinHeap.new
   tovisit << [0, s]
 
@@ -46,6 +47,6 @@ input.take(N).each do |x,y|
   m[y][x] = "#"
 end
 
-puts m.map(&:join)
+STDERR.puts m.map(&:join)
 
 puts astar(m, [0,0], [HEIGHT-1,WIDTH-1])

@@ -54,8 +54,8 @@ while b != t do
     m[y][x] = "#"
   end
 
-  puts m.map(&:join)
-  puts [b, t].to_s
+  STDERR.puts m.map(&:join)
+  STDERR.puts [b, t].to_s
 
   if astar(m, [0,0], [HEIGHT-1,WIDTH-1]) == Float::INFINITY
     t = mid
@@ -67,7 +67,7 @@ m = Array.new(HEIGHT) { Array.new(WIDTH) { "." } }
 input.take(b-1).each do |x,y|
   m[y][x] = "#"
 end
-puts astar(m, [0,0],[HEIGHT-1,WIDTH-1])
-puts b-1
+STDERR.puts astar(m, [0,0],[HEIGHT-1,WIDTH-1])
+STDERR.puts b-1
 puts input.drop(b-1).first.join(",")
 
