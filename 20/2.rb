@@ -1,8 +1,9 @@
 require "rubygems"
 require "algorithms"
 
+
 DIRECTIONS = [[1,0],[-1,0],[0,1],[0,-1]]
-CHEAT_LENGTH=20
+CHEAT_LENGTH=ARGV[0].to_i
 
 def h(p,e)
   y1,x1 = p
@@ -37,7 +38,7 @@ def dijk(m,s)
   return costs
 end
 
-m = eval(gets)
+m = eval(STDIN.gets)
 s=nil
 e=nil
 m.each_with_index do |l,i|
